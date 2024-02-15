@@ -1,0 +1,77 @@
+
+<div class="row">
+    <div class="nav-bar">
+        <ul class="nav-list mt-2">
+            <button class="btn btn-primary">AddNewTask</button>
+            <button class="btn btn-danger mt-2"(click)="logout()">Logout</button>
+        </ul>
+    </div>
+</div>
+<div *ngIf="Tasks;else err" class="container mob-tables">
+    <div class="headers">
+      <h2 class="table title">manage Tasks</h2>
+      <button class="btn add" (click)="openform()">Add Task</button>
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Task</th>
+          <th>Id</th>
+          <th>Title</th>
+          <th>Description</th>
+          <th>CompletionDate</th>
+          <th>Priority</th>
+          <th></th> 
+          <th></th>
+        </tr>
+      </thead>
+      <tbody class="text-center">
+        <tr *ngFor="let task of Tasks">
+        
+          <td>{{task['id']}}</td>
+          <td>{{task['title']}}</td>
+          <td>{{task['description']}}</td>
+          <td>{{task['CompletionDate']}}</td>
+          <td>{{task['Priority']}}</td>
+          <td>
+            <button class="btn btn-primary"(click)="openform(task)">Edit</button>
+          </td>
+        
+        </tr>
+      </tbody>
+    </table>
+  
+  </div>
+  <ng-template #err>
+  <p class="text-danger">error in fetching data</p>
+  </ng-template>
+  <div class="form-wrapper" *ngIf="showform">
+    <div class="mobile-form">
+      <h2 class="text-center text-info">{{formheader}}</h2>
+      <div class="group">
+        <label for="Id">Id:</label>
+        <input type="text" class="form-control" [(ngModel)]="id" name="Id" required minLength="5">
+      </div>
+      <div class="group">
+        <label for="Title">Title:</label>
+        <input type="number" class="form-control" [(ngModel)]="title" name="Title" required min="1000">
+      </div>
+      <div class="Description">
+        <label for="Description">Description:</label>
+        <input type="number" class="form-control" [(ngModel)]="description" name="Description" required min="1">
+      </div>
+      <div class="group">
+        <label for="CompletionDate">CompletionDate:</label>
+        <input type="number" class="form-control" [(ngModel)]="CompletionDate" name="CompletionDate" required min="1">
+      </div>
+      <div class="group">
+        <label for="Priority">Priority:</label>
+        <input type="number" class="form-control" [(ngModel)]="Priority" name="Priority" required min="1">
+      </div>
+      <div class="action">
+        <button class="btn btn-primary save" (click)="senddata()">Send</button>
+      </div>
+    </div>
+   </div>
+<router-outlet></router-outlet>
+

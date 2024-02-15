@@ -1,0 +1,32 @@
+
+
+<div class="container mt-5">
+    <h1>Admin Login Form</h1>
+  <div class="admin-container mt-3">
+
+    <form [formGroup]="ManagerloginForm" (ngSubmit)="onSubmit()">
+
+        <div class="form-group">
+            <label ><i class="fa fa-circle-user"></i>Admin Id</label>
+            <input type="text"
+            [class.is-invalid]="empId?.invalid && empId?.touched"
+             formControlName="emailid" class="form-control">
+             <div *ngIf="empId.invalid && empId.touched ||submit && empId?.invalid">
+                <small class="text-danger"*ngIf="empId?.errors?.['required']">empid is Required</small>
+              </div>
+        </div>
+        <br>
+        <div class="form-group">
+            <label ><i class="fa fa-key"></i> password</label>
+            <input type="password" formControlName="password"  [class.is-invalid]="password?.invalid && password?.touched"class="form-control">
+            <div *ngIf="password.invalid && password.touched ||submit && password?.invalid">
+                <small class="text-danger"*ngIf="password?.errors?.['required']">password is Required</small>
+              </div>
+        </div>
+        <br>
+        <div class="form-group">
+           <a routerLink="/admin/addtask"><button type="submit" class="btn btn-success">Login</button></a>
+        </div>
+    </form>
+</div>
+</div>
